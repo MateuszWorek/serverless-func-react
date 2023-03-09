@@ -1,0 +1,107 @@
+# Serverlless Functions on Netlify
+
+## Clone repository and install dependencies
+
+```sh
+git clone https://github.com/john-smilga/serverless-functions-starter.git
+cd serverless-functions-starter
+npm install
+npm install -g netlify-cli
+```
+
+## Run server
+
+```sh
+npm run netlify
+or
+npm netlify dev
+```
+
+netlify.toml
+
+```toml
+[build]
+functions = './functions'
+```
+
+## 1-hello
+
+./netlify.toml ./functions/1-hello.js
+
+## 2-basic-api
+
+## Create repository and add to github
+
+Deploy
+
+```sh
+git init
+git add .
+git commit -m 'first commit'
+git remote rm origin
+git remote add origin https://github.com/MateuszWorek/temp-serverless-func.git
+git branch -M main
+git push -u origin main
+```
+
+Re-Deploy
+
+```sh
+git add .
+git commit -m 'commit'
+git push -u origin main
+```
+
+## ENV VARIABLES
+
+./.env
+
+```
+AIRTABLE_API_KEY=keyDTwtTV8UFNH8f9
+```
+
+package.json
+
+```
+dependencies > "dotenv": "^8.2.0",
+```
+
+functions/3-airtable.js
+
+```
+require('dotenv').config();
+apiKey: process.env.AIRTABLE_API_KEY
+```
+
+## React Project
+
+Add to package.json
+
+```sh
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "CI= react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "netlify": "ntl dev"
+  },
+```
+
+```sh
+npm run netlify
+```
+
+package.json
+
+```json
+    "build": "CI= react-scripts build",
+```
+
+Deploy React Project The idea behind that command is to delete the .git folder
+once you have cloned the repository.
+
+```sh
+rmdir .git
+Y
+```
